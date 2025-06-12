@@ -1,0 +1,4 @@
+Requirements:
+Python 3.10 (Version till which mini-llama exists)
+mini-llama model (https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF?show_file_info=mistral-7b-instruct-v0.1.Q4_K_M.gguf)
+libraries such as llama-cpp-python, pyPDF2, langchain, sentence-transformers
