@@ -1,5 +1,5 @@
 # 🤖🦙 Chatbot using miniLLAMA
-Mini LLAMA Chatbot (Offline) with Table-to-Text Summarization This project is an offline chatbot built using Meta's mini-LLAMA model (8B) and llama-cpp-python, with a Streamlit UI. In addition to general chatbot functionality, it can also convert tabular data into natural language summaries.
+Mini LLAMA Chatbot (Offline) with Table-to-Text Summarization This project is an offline chatbot built using Meta's mini-LLAMA model (8B) and llama-cpp-python, with a Streamlit UI. In addition to general chatbot functionality, it can also convert tabular data into natural language summaries using TableNet.
 
 Features:
 
