@@ -1,14 +1,18 @@
 # 🤖🦙 Chatbot using miniLLAMA
-Mini LLAMA Chatbot (Offline) with Table-to-Text Summarization This project is an offline chatbot built using Meta's mini-LLAMA model (8B) and llama-cpp-python, with a Streamlit UI. In addition to general chatbot functionality, it can also convert tabular data into natural language summaries using TableNet.
+This project is an offline AI chatbot powered by Meta's MiniLLAMA model (8B) using llama-cpp-python and a Streamlit web interface. It supports both general chatbot interaction and intelligent table summarization from uploaded PDFs or images, making it ideal for processing invoices, bills, and reports — all without needing internet access after setup.
 
 Features:
 
-💬 Offline chatbot using miniLLAMA (8B Instruct).
+💬 Offline Chatbot using MiniLLAMA (8B Instruct)
 
-🧠 Summarizes tables in Markdown or CSV format into natural text.
+🧠 Table-to-Text Summarization: Converts scanned tables (invoices, PDFs, images) into natural language summaries
 
-🔒 Private & fast — runs locally, no internet required after setup.
+📄 Document Uploader: Upload PDFs, PNGs, JPGs, or JPEGs — OCR is used to extract content
 
-🧊 Built with llama-cpp-python for efficient inference.
+📑 Document-aware Question Answering: Ask questions based on uploaded documents
 
-🌐 Web interface powered by Streamlit.
+🔒 Fully Private & Fast — runs locally, no cloud APIs required
+
+🧊 Built using llama-cpp-python for fast CPU/GPU inference
+
+🌐 Simple, clean web UI powered by Streamlit
