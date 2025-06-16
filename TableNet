@@ -1,0 +1,5 @@
+TableNet is a deep learning architecture designed for end-to-end table detection and structure recognition from document images (e.g. scanned PDFs, receipts, forms). It aims to:
+
+Detect table boundaries in a document.
+
+Recognize the structure of rows and columns within those tables.
