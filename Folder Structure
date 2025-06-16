@@ -1,6 +1,6 @@
 mini_llama_chatbot/
 ├── main.py
-├── test_llama.py
+├── uploads/                       
 ├── models/
 │   └── llama/
-│       └── mini-llama-model.gguf
+│       └── mistral-7b-instruct-v0.1.Q4_K_M.gguf
