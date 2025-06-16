@@ -36,7 +36,7 @@ def extract_text_from_document(file_path):
 # -------------------------
 # Streamlit UI
 # -------------------------
-st.title("🦙 Mistral Chatbot (Offline) + 📄 Document QA")
+st.title("🦙 Mistral Chatbot")
 
 # Track chat history
 if "messages" not in st.session_state:
