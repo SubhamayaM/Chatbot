@@ -1,0 +1,19 @@
+# STEP 1: Navigate to your project directory
+cd "C:\Users\S K Mohanty\OneDrive\Desktop\mini_llama_chatbot"
+
+# STEP 2: Delete old virtual environment if it exists
+Remove-Item -Recurse -Force .\venv
+
+# STEP 3: Recreate virtual environment using correct Python path
+"C:\Users\S K Mohanty\AppData\Local\Programs\Python\Python310\python.exe" -m venv venv
+
+# STEP 4: Activate the new virtual environment
+.\venv\Scripts\activate
+
+# STEP 5: Upgrade pip and install required packages
+pip install --upgrade pip setuptools wheel
+pip install streamlit llama-cpp-python
+pip install streamlit llama-cpp-python python-doctr[torch]
+
+# STEP 6: Run the Streamlit app
+python -m streamlit run main.py
