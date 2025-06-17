@@ -1,18 +1,20 @@
 # 🤖🦙 Chatbot using miniLLAMA
-This project is an offline AI chatbot powered by Meta's MiniLLAMA model (8B) using llama-cpp-python and a Streamlit web interface. It supports both general chatbot interaction and intelligent table summarization from uploaded PDFs or images, making it ideal for processing invoices, bills, and reports — all without needing internet access after setup.
+This project is a private, local AI assistant powered by MiniLLaMA (Mistral) using llama-cpp-python. It intelligently processes scanned documents (PDFs, images), extracts table-like structured text, retrieves the most relevant information, and can answer multiple questions or generate summaries using RAG (Retrieval-Augmented Generation).
 
 Features:
 
-💬 Offline Chatbot using MiniLLAMA (8B Instruct)
+💬 Offline Chatbot	Powered by MiniLLaMA via llama-cpp-python, no internet needed.
 
-🧠 Table-to-Text Summarization: Converts scanned tables (invoices, PDFs, images) into natural language summaries.
+📄 PDF/Image Upload	Upload scanned documents, bills, reports, etc.
 
-📄 Document Uploader: Upload PDFs, PNGs, JPGs, or JPEGs — OCR is used to extract content.
+📊 Table-Aware OCR	Extracts structured table content using doctr (TableNet-style).
 
-📑 Document-aware Question Answering: Ask questions based on uploaded documents.
+🔍 RAG	Uses SentenceTransformer + FAISS to find the most relevant document chunks.
 
-🔒 Fully Private & Fast — runs locally, no cloud APIs required.
+📝 Text Summarizer	Type summarize to get a short summary of the entire document.
 
-🧊 Built using llama-cpp-python for fast CPU/GPU inference.
+🔢 Multi-Question Support	Ask more than one question at a time — the bot will number answers.
 
-🌐 Simple, clean web UI powered by Streamlit.
+🌐 Streamlit UI	Simple, web-based interface to upload, chat, and interact.
+
+🔒 100% Offline	Secure, fast, and private — ideal for sensitive data.
