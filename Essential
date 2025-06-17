@@ -14,6 +14,7 @@ Remove-Item -Recurse -Force .\venv
 pip install --upgrade pip setuptools wheel
 pip install streamlit llama-cpp-python
 pip install streamlit llama-cpp-python python-doctr[torch]
+pip install python-doctr[torch] sentence-transformers faiss-cpu
 
 # Run the Streamlit app
 python -m streamlit run main.py
