@@ -2,9 +2,11 @@
 from llama_cpp import Llama
 import streamlit as st
 import os
-
+import faiss
+import numpy as np
 from doctr.io import DocumentFile
 from doctr.models import ocr_predictor
+from sentence_transformers import SentenceTransformer
 
 # -------------------------
 # Load LLaMA model
@@ -13,7 +15,7 @@ from doctr.models import ocr_predictor
 def load_llama_model():
     return Llama(
         model_path="./models/llama/mistral-7b-instruct-v0.1.Q4_K_M.gguf",
-        n_ctx=512,
+        n_ctx=2048,
         n_threads=4,
         verbose=False
     )
@@ -21,7 +23,7 @@ def load_llama_model():
 llm = load_llama_model()
 
 # -------------------------
-# Load OCR model for documents
+# Load OCR model
 # -------------------------
 @st.cache_resource
 def load_ocr_model():
@@ -31,26 +33,33 @@ def extract_text_from_document(file_path):
     model = load_ocr_model()
     doc = DocumentFile.from_pdf(file_path) if file_path.endswith(".pdf") else DocumentFile.from_images(file_path)
     result = model(doc)
-    return result.render()  # Returns HTML/text content
+    return result.render()  # TableNet-like HTML-style output
+
+# -------------------------
+# Load embedding model
+# -------------------------
+@st.cache_resource
+def load_embedder():
+    return SentenceTransformer("all-MiniLM-L6-v2")
+
+embedder = load_embedder()
 
 # -------------------------
 # Streamlit UI
 # -------------------------
-st.title("🦙 Mistral Chatbot")
+st.title("🦙 MiniLLAMA + 🔍 RAG + 📊 Table Summarizer Chatbot")
 
-# Track chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
-
-# Show previous messages
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+if "doc_chunks" not in st.session_state:
+    st.session_state.doc_chunks = []
+    st.session_state.doc_embeddings = None
+    st.session_state.index = None
 
 # -------------------------
-# File Upload Section
+# Upload Document
 # -------------------------
-uploaded_file = st.file_uploader("📄 Upload a scanned document (PDF/Image)", type=["pdf", "png", "jpg", "jpeg"])
+uploaded_file = st.file_uploader("📄 Upload scanned document (PDF/Image)", type=["pdf", "png", "jpg", "jpeg"])
 
 if uploaded_file:
     os.makedirs("uploads", exist_ok=True)
@@ -60,33 +69,65 @@ if uploaded_file:
         f.write(uploaded_file.read())
 
     st.success(f"✅ Uploaded: `{uploaded_file.name}`")
-    st.session_state["uploaded_doc_path"] = file_path
 
-    # Extract content from uploaded document
-    st.markdown("### 🔍 Extracting content from document...")
-    extracted_html = extract_text_from_document(file_path)
+    extracted = extract_text_from_document(file_path)
+    st.session_state["full_doc"] = extracted
 
-    st.markdown("### 📑 Extracted Document Content:")
-    st.markdown(extracted_html, unsafe_allow_html=True)
-    st.session_state["extracted_content"] = extracted_html
+    # Show extracted content
+    st.markdown("### 🧾 Extracted Content:")
+    st.markdown(extracted, unsafe_allow_html=True)
+
+    # Chunk for RAG
+    chunk_size = 300
+    chunks = [extracted[i:i + chunk_size] for i in range(0, len(extracted), chunk_size)]
+    st.session_state.doc_chunks = chunks
+
+    # Embed and store
+    embeddings = embedder.encode(chunks)
+    st.session_state.doc_embeddings = np.array(embeddings).astype("float32")
+    index = faiss.IndexFlatL2(st.session_state.doc_embeddings.shape[1])
+    index.add(st.session_state.doc_embeddings)
+    st.session_state.index = index
 
 # -------------------------
-# Chat Input Section
+# RAG context retrieval
 # -------------------------
-user_input = st.chat_input("Ask anything...")
+def retrieve_context(question, top_k=3):
+    question_embedding = embedder.encode([question]).astype("float32")
+    D, I = st.session_state.index.search(question_embedding, top_k)
+    return "\n\n".join([st.session_state.doc_chunks[i] for i in I[0]])
+
+# -------------------------
+# Chat interface
+# -------------------------
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+user_input = st.chat_input("Ask anything or type 'summarize'...")
 
 if user_input:
     st.chat_message("user").markdown(user_input)
     st.session_state.messages.append({"role": "user", "content": user_input})
 
-    # Use document content if available
-    if "extracted_content" in st.session_state:
-        doc_text = st.session_state["extracted_content"]
-        prompt = f"[INST] Document:\n{doc_text}\n\nQuestion: {user_input} [/INST]"
+    if "summarize" in user_input.lower():
+        if st.session_state.get("doc_chunks"):
+            context = "\n\n".join(st.session_state.doc_chunks)
+            prompt = f"Summarize the following document:\n\n{context}\n\nSummary:"
+        else:
+            prompt = "There is no document to summarize."
     else:
-        prompt = f"[INST] {user_input} [/INST]"
+        if st.session_state.get("index"):
+            context = retrieve_context(user_input)
+            prompt = (
+                "You are a helpful assistant. Please answer ALL questions asked. "
+                "If there are multiple questions, number your answers clearly.\n\n"
+                f"Context:\n{context}\n\nQuestions:\n{user_input}\n\nAnswer:"
+            )
+        else:
+            prompt = user_input
 
-    output = llm(prompt, max_tokens=200)
+    output = llm(prompt[:6000], max_tokens=300)
     response = output["choices"][0]["text"].strip()
 
     st.chat_message("assistant").markdown(response)
