@@ -47,7 +47,7 @@ embedder = load_embedder()
 # -------------------------
 # Streamlit UI
 # -------------------------
-st.title("🛡️ Defense Intel Chatbot | MiniLLAMA + RAG + Summarization")
+st.title("🦙🤖 Mistral Chatbot (Offline)")
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
