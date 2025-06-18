@@ -1,20 +1,20 @@
 # 🤖🦙 Chatbot using miniLLAMA
-This project is a private, local AI assistant powered by MiniLLaMA (Mistral) using llama-cpp-python. It intelligently processes scanned documents (PDFs, images), extracts table-like structured text, retrieves the most relevant information, and can answer multiple questions or generate summaries using RAG (Retrieval-Augmented Generation).
+An advanced, fully offline AI assistant built for secure document analysis and question answering, powered by MiniLLaMA (Mistral). Ideal for defense, intelligence, and mission-critical workflows, it can read scanned documents, extract structured data, summarize field reports, and answer complex multi-part questions — all with RAG (Retrieval-Augmented Generation) and OCR-based table extraction.
 
 Features:
 
-💬 Offline Chatbot	Powered by MiniLLaMA via llama-cpp-python, no internet needed.
+🧠 RAG-Powered QA	Uses FAISS and SentenceTransformer to retrieve relevant chunks from documents.
 
-📄 PDF/Image Upload	Upload scanned documents, bills, reports, etc.
+📄 PDF/Image OCR	Extracts structured, table-aware text from reports (via doctr).
 
-📊 Table-Aware OCR	Extracts structured table content using doctr (TableNet-style).
+🧾 Table Summarization	Understands and condenses tabular information from scanned docs.
 
-🔍 RAG	Uses SentenceTransformer + FAISS to find the most relevant document chunks.
+📝 Intelligent Summarizer	Type summarize to get a short doc summary.
 
-📝 Text Summarizer	Type summarize to get a short summary of the entire document.
+⏱️ 24-Hour Intel Summary	Type summarize last 24 hours for a SITREP-style digest.
 
-🔢 Multi-Question Support	Ask more than one question at a time — the bot will number answers.
+🔢 Multi-Question Handling	Ask multiple questions at once and get numbered answers.
 
-🌐 Streamlit UI	Simple, web-based interface to upload, chat, and interact.
+📎 Streamlit Web UI	Easy-to-use offline interface.
 
-🔒 100% Offline	Secure, fast, and private — ideal for sensitive data.
+🔒 Fully Private & Offline	Designed for secure, air-gapped environments.
