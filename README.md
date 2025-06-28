@@ -3,18 +3,18 @@ An advanced, fully offline AI assistant built for secure document analysis and q
 
 Features:
 
-🧠 RAG-Powered QA	Uses FAISS and SentenceTransformer to retrieve relevant chunks from documents.
+🧠 Mistral LLM (Offline)	Runs locally via llama-cpp-python using .gguf model.
 
-📄 PDF/Image OCR	Extracts structured, table-aware text from reports (via doctr).
+📄 Document OCR (doctr)	Extracts text and tables from scanned PDFs/images.
 
-🧾 Table Summarization	Understands and condenses tabular information from scanned docs.
+🧾 Table-Aware Summarization	Understands layout and formats structured summaries.
 
-📝 Intelligent Summarizer	Type summarize to get a short doc summary.
+🔍 RAG (Retrieval-Augmented Generation)	Retrieves relevant text chunks using FAISS + SentenceTransformer.
 
-⏱️ 24-Hour Intel Summary	Type summarize last 24 hours for a SITREP-style digest.
+📝 Smart Summarization	Type summarize or summarize last 24 hours for SITREP.
 
-🔢 Multi-Question Handling	Ask multiple questions at once and get numbered answers.
+🔢 Multi-Question Handling	Responds to multiple queries in one prompt with numbered answers.
 
-📎 Streamlit Web UI	Easy-to-use offline interface.
+💬 Streamlit UI	Secure, interactive chat-style interface.
 
-🔒 Fully Private & Offline	Designed for secure, air-gapped environments.
+🔒 Fully Offline & Private	No cloud, no data leaks — air-gapped capable.
