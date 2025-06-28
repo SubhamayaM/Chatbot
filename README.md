@@ -1,5 +1,5 @@
-# 🤖🦙 Chatbot using miniLLAMA
-An advanced, fully offline AI assistant built for secure document analysis and question answering, powered by MiniLLaMA (Mistral). Ideal for defense, intelligence, and mission-critical workflows, it can read scanned documents, extract structured data, summarize field reports, and answer complex multi-part questions — all with RAG (Retrieval-Augmented Generation) and OCR-based table extraction.
+# 🤖🦙 Mistral Chatbot (Offline)
+An advanced, fully offline AI assistant built for secure document analysis and question answering, powered by Mistral. Ideal for defense, intelligence, and mission-critical workflows, it can read scanned documents, extract structured data, summarize field reports, and answer complex multi-part questions — all with RAG (Retrieval-Augmented Generation) and OCR-based table extraction.
 
 Features:
 
