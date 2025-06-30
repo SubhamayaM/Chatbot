@@ -59,7 +59,7 @@ if "doc_chunks" not in st.session_state:
 # -------------------------
 # Upload Document
 # -------------------------
-uploaded_file = st.file_uploader("📄 Upload Intel Report (PDF/Image)", type=["pdf", "png", "jpg", "jpeg"])
+uploaded_file = st.file_uploader("📄 Upload Intel Report (PDF / Image)", type=["pdf", "png", "jpg", "jpeg"])
 
 if uploaded_file:
     os.makedirs("uploads", exist_ok=True)
