@@ -1,1 +1,2 @@
 # Componenets Used
+Model - Uses llama-cpp-python to run Mistral GGUF model offline on CPU
