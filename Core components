@@ -1,6 +1,6 @@
 # Componenets Used
 
-Model - Uses llama-cpp-python to run Mistral GGUF model offline on CPU. Mistral-7B-Instruct (Q4_K_M)
+Model - Uses llama-cpp-python to run Mistral GGUF model offline on CPU. (Mistral-7B-Instruct [Q4_K_M])
 
 Prompt - Wraps user input in [INST] ... [/INST] format for Mistral.
 
