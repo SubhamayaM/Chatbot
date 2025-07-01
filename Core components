@@ -1,2 +1,9 @@
 # Componenets Used
-Model - Uses llama-cpp-python to run Mistral GGUF model offline on CPU
+
+Model - Uses llama-cpp-python to run Mistral GGUF model offline on CPU.
+
+Prompt - Wraps user input in [INST] ... [/INST] format for Mistral.
+
+Session - st.session_state tracks chat history across interactions.
+
+UI/UX - Built using Streamlit to render chat messages & input field.
