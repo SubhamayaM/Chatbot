@@ -1,6 +1,7 @@
 mini_llama_chatbot/
 ├── main.py
-├── uploads/                       
+├── uploads/ 
+|          └── # chatbot upload stored file                      
 ├── models/
 │   └── llama/
 │       └── mistral-7b-instruct-v0.1.Q4_K_M.gguf
