@@ -80,6 +80,8 @@ if uploaded_file:
     chunks = [extracted[i:i + chunk_size] for i in range(0, len(extracted), chunk_size)]
     st.session_state.doc_chunks = chunks
 
+# FAISS - Vector Database 
+    
     embeddings = embedder.encode(chunks)
     st.session_state.doc_embeddings = np.array(embeddings).astype("float32")
     index = faiss.IndexFlatL2(st.session_state.doc_embeddings.shape[1])
