@@ -23,7 +23,7 @@ def load_llama_model():
 llm = load_llama_model()
 
 # -------------------------
-# Load OCR model
+# For Loading OCR model
 # -------------------------
 @st.cache_resource
 def load_ocr_model():
