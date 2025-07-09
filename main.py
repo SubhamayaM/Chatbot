@@ -45,7 +45,7 @@ def load_embedder():
 embedder = load_embedder()
 
 # -------------------------
-# Streamlit UI
+# Streamlit UI (User Interface)
 # -------------------------
 st.title("🦙🤖 Mistral Chatbot (Offline)")
 
