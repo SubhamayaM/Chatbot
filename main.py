@@ -57,7 +57,7 @@ if "doc_chunks" not in st.session_state:
     st.session_state.index = None
 
 # -------------------------
-# Upload Document
+# Uploading Document Prompt
 # -------------------------
 uploaded_file = st.file_uploader("📄 Upload Intel Report (PDF / Image)", type=["pdf", "png", "jpg", "jpeg"])
 
