@@ -36,7 +36,7 @@ def extract_text_from_document(file_path):
     return result.render()
 
 # -------------------------
-# Load embedding model
+# For Loading embedding model
 # -------------------------
 @st.cache_resource
 def load_embedder():
