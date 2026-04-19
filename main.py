@@ -8,9 +8,9 @@ from doctr.io import DocumentFile
 from doctr.models import ocr_predictor
 from sentence_transformers import SentenceTransformer
 
-# -------------------------
+
 # Load LLaMA model
-# -------------------------
+
 @st.cache_resource
 def load_llama_model():
     return Llama(
