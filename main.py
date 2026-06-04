@@ -22,9 +22,9 @@ def load_llama_model():
 
 llm = load_llama_model()
 
-# -------------------------
+
 # For Loading OCR model
-# -------------------------
+
 @st.cache_resource
 def load_ocr_model():
     return ocr_predictor(pretrained=True)
@@ -35,18 +35,18 @@ def extract_text_from_document(file_path):
     result = model(doc)
     return result.render()
 
-# -------------------------
+
 # For Loading embedding model
-# -------------------------
+
 @st.cache_resource
 def load_embedder():
     return SentenceTransformer("all-MiniLM-L6-v2")
 
 embedder = load_embedder()
 
-# -------------------------
+
 # Streamlit UI (User Interface)
-# -------------------------
+
 st.title("🦙🤖 Mistral Chatbot (Offline)")
 
 if "messages" not in st.session_state:
@@ -56,7 +56,7 @@ if "doc_chunks" not in st.session_state:
     st.session_state.doc_embeddings = None
     st.session_state.index = None
 
-# -------------------------
+
 # Uploading Document Prompt
 # -------------------------
 uploaded_file = st.file_uploader("📄 Upload Intel Report (PDF / Image)", type=["pdf", "png", "jpg", "jpeg"])
@@ -88,7 +88,7 @@ if uploaded_file:
     index.add(st.session_state.doc_embeddings)
     st.session_state.index = index
 
-# -------------------------
+
 # RAG context retrieval
 # -------------------------
 def retrieve_context(question, top_k=3):
@@ -96,7 +96,7 @@ def retrieve_context(question, top_k=3):
     D, I = st.session_state.index.search(question_embedding, top_k)
     return "\n\n".join([st.session_state.doc_chunks[i] for i in I[0]])
 
-# -------------------------
+
 # Chat Interface
 # -------------------------
 for message in st.session_state.messages:
